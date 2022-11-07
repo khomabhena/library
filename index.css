@@ -3,6 +3,16 @@
     box-sizing: border-box;
 }
 
+:root {
+    --primary-dark: #042A2B;
+    --primary: #5EB1BF;
+    --primary-light: #54F2F2;
+    --white: #FCFCFC;
+    --accent: #F4E04D;
+    --grey: #9DA2AB;
+    --light-grey: #ACBDBA;
+}
+
 .container {
     background-color: red;
     display: grid;
