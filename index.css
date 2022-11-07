@@ -128,3 +128,43 @@ input:focus {
 .username {
     font-weight: 100;
 }
+
+
+.content {
+    margin: 2rem;
+    padding: 2rem 1.5rem;
+    border-radius: 24px;
+    background-color: var(--white);
+    box-shadow: 5px 5px 5px var(--light-grey)
+}
+
+table {
+    width: 100%;
+}
+
+
+td {
+    padding: .5rem .6rem;
+}
+
+tr > #left {
+    text-align: end;
+}
+
+td {
+    border: 1px solid var(--light-grey);
+    border-radius: 10px;
+}
+
+table {
+    border-spacing: .5rem;
+}
+
+tr:hover {
+    background-color: var(--light-grey);
+    /* color: var(--white); */
+}
+
+tr:nth-child(even) {
+    /* background-color: var(--light-grey); */
+}
