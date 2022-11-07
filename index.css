@@ -13,6 +13,17 @@
     --light-grey: #ACBDBA;
 }
 
+:root.dark {
+    --primary-dark: #161925;
+    --primary: #23395B;
+    --primary-light: #406E8E;
+    --white: #FCFCFC;
+    --accent: #CBF7ED;
+    --grey: #8EA8C3;
+    --light-grey: #ACBDBA;
+
+}
+
 .container {
     background-color: red;
     display: grid;
