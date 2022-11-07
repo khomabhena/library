@@ -1,4 +1,5 @@
 let myLibrary = []
+let myLibraryDeleted = []
 
 function Book(author, title, pages, isRead) {
     this.author = author
@@ -20,9 +21,12 @@ function getAllBooks() {
 }
 
 function removeBook(id) {
-    const removed = myLibrary.splice(id, 1)
-    
-    getAllBooks()
+    const removed = myLibrary.splice(id, 1)[0]
+    const newBook = new Book(removed.author, removed.title, removed.pages, removed.isRead)
+    myLibraryDeleted.push(newBook)
+
+    console.log(myLibrary)
+    console.log(myLibraryDeleted)
 }
 
 function setRead(id) {
@@ -37,4 +41,4 @@ addBookToLibrary("Kho", "Software Engineering", 27, false)
 addBookToLibrary("Hle", "Chemical Engineering", 4, false)
 addBookToLibrary("Mdu", "Graphic Art", 28, false)
 
-setRead(0)
+removeBook(0)
