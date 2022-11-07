@@ -10,10 +10,46 @@
 </head>
 <body>
     <div class="container">
-        <div class="sidebar">Sidebar</div>
-        <div class="menu">Menu</div>
-        <div class="content">Content</div>
-        <div class="form">Form</div>
+        <div class="sidebar">
+            <div class="logo">Library Dash</div>
+            <ul>
+                <li class="authors">Authors</li>
+                <li class="books">Books</li>
+                <li class="deleted">Deleted</li>
+            </ul>
+        </div>
+        <div class="menu">
+            <input type="search" name="search" id="search" placeholder="Search for books">
+            <div class="credentials">
+                <h4 class="name">Kho Mabhena</h4>
+                <p class="username">@khomab</p>
+            </div>
+        </div>
+        <div class="content">
+            <table class="table">
+                <th>Author</th>
+                <th>Book Title</th>
+                <th>No. of Pages</th>
+                <th>Have You Read</th>
+                <th></th>
+                <tr>
+                    <td>Kho</td>
+                    <td>Software Engineering</td>
+                    <td>27</td>
+                    <td><input type="checkbox" name="" id=""></td>
+                    <td><button id="" class="delete">Delete</button></td>
+                </tr>
+            </table>
+        </div>
+        <div class="form">
+            <h3>Add New Book</h3>
+            <form action="">
+                <input type="text" class="iAuthor" placeholder="Author">
+                <input type="text" class="iAuthor" placeholder="Book Title">
+                <input type="number" class="iAuthor" placeholder="Number of pages">
+                <button type="submit">Add Book</button>
+            </form>
+        </div>
     </div>
 </body>
 </html>
