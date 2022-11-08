@@ -8,54 +8,55 @@ function Book(author, title, pages, isRead) {
     this.isRead = isRead
 }
 
-function createTableRow(id, book) {
-    const tr = document.createElement('tr')
-    const tdAuthor = document.createElement('td')
-    const tdTitle = document.createElement('td')
-    const tdPages = document.createElement('td')
-    const tdRead = document.createElement('td')
-    const tdDelete = document.createElement('td')
-    const checkBox = document.createElement('input')
-    const deleteSpan = document.createElement('span')
+function createCard(id, book) {
+    const card = document.createElement('div')
+    card.classList.toggle('card')
+
+    const h4 = document.createElement('h4')
+    h4.classList.toggle('author')
+    h4.textContent = book.author
     
-    tdAuthor.textContent = book.author
-    tdTitle.textContent = book.title
-    tdPages.textContent = book.pages
-    deleteSpan.textContent = 'delete'
-
-    tdPages.classList.toggle('left')
-    tdRead.classList.toggle('left')
-    tdDelete.classList.toggle('delete')
-
-    checkBox.setAttribute('type', 'checkbox')
-    deleteSpan.classList.toggle('material-symbols-outlined')
-
-    tdRead.appendChild(checkBox)
-    tdDelete.appendChild(deleteSpan)
+    const h5 = document.createElement('h5')
+    h5.classList.toggle('title')
+    h5.textContent = book.title
     
+    const p = document.createElement('p')
+    p.classList.toggle('pages')
+    p.textContent = book.pages + " pages"
 
-    tr.appendChild(tdAuthor)
-    tr.appendChild(tdTitle)
-    tr.appendChild(tdPages)
-    tr.appendChild(tdRead)
-    tr.appendChild(tdDelete)
+    const buttonContainer = document.createElement('div')
+    buttonContainer.classList.toggle('button-container')
 
-    return tr
+    const buttonRead = document.createElement('button')
+    buttonRead.classList.toggle('read')
+    buttonRead.textContent = 'Not Read'
+
+    const buttonDelete = document.createElement('button')
+    buttonDelete.classList.toggle('delete')
+    buttonDelete.textContent = 'Delete'
+    
+    buttonContainer.appendChild(buttonRead)
+    buttonContainer.appendChild(buttonDelete)
+
+    card.appendChild(h4)
+    card.appendChild(h5)
+    card.appendChild(p)
+    card.appendChild(buttonContainer)
+
+    return card
 }
 
-function addBooksToPage() {
-    const table = document.querySelector('table')
-   
-    myLibrary.forEach((item, index) => {
-        table.appendChild(createTableRow(index, item))
-    })
+function addBooksToPage(book) {
+    const index = myLibrary.length - 1
+    const content = document.querySelector('.content')
+    content.appendChild(createCard(index, book))
 }
 
 function addBookToLibrary(author, title, pages, isRead) {
     const newBook = new Book(author, title, pages, isRead)
     myLibrary.push(newBook)
 
-    addBooksToPage()
+    addBooksToPage(newBook)
 }
 
 function getAllBooks() {
