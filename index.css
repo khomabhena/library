@@ -14,6 +14,7 @@
     --accent: #F4E04D;
     --grey: #9DA2AB;
     --light-grey: #ACBDBA;
+    --green: #4DAA57;
 }
 
 :root.dark {
@@ -183,6 +184,10 @@ input:focus {
     padding: .5rem;
     color: var(--white);
     cursor: pointer;
+}
+
+#read {
+    background-color: var(--green);
 }
 
 

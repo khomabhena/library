@@ -44,7 +44,8 @@ function createCard(id, book) {
 
     const buttonRead = document.createElement('button')
     buttonRead.classList.toggle('read')
-    buttonRead.textContent = 'Not Read'
+    buttonRead.setAttribute('id', book.isRead ? 'read' : '')
+    buttonRead.textContent = book.isRead ? 'Read' : 'Not Read'
 
     const buttonDelete = document.createElement('button')
     buttonDelete.classList.toggle('delete')
@@ -60,6 +61,10 @@ function createCard(id, book) {
 
     buttonDelete.addEventListener('click', e => {
         removeBook(id)
+    })
+
+    buttonRead.addEventListener('click', e => {
+        setRead(id)
     })
 
     return card
@@ -100,12 +105,17 @@ function removeBook(id) {
 }
 
 function setRead(id) {
-    const book = myLibrary[id]
+    let lib = getLibrary(LIBRARY_MAIN)
+
+    const book = lib[id]
     const newBook = new Book(book.author, book.title, book.pages, !book.isRead)
 
+    console.log(newBook)
     // Update array
-    const lib = getLibrary(LIBRARY_MAIN).splice(id, 1, newBook)
-    storeLibrary(lib)
+    lib.splice(id, 1, newBook)
+    console.table(lib)
+    storeLibrary(LIBRARY_MAIN, lib)
+    getAllBooks(LIBRARY_MAIN)
 }
 
 document.querySelector('.submit').addEventListener('click', e => {
