@@ -89,12 +89,14 @@ function getAllBooks(type) {
 getAllBooks(LIBRARY_MAIN)
 
 function removeBook(id) {
-    const removed = myLibrary.splice(id, 1)[0]
-    const newBook = new Book(removed.author, removed.title, removed.pages, removed.isRead)
+    const lib = getLibrary(LIBRARY_MAIN)
+
+    const removed = lib.splice(id, 1)[0]
+    storeLibrary(LIBRARY_MAIN, lib)
     
-    const content = document.querySelector('.content')
-    content.innerHTML = ''
-    getLibrary(LIBRARY_DELETED).push(newBook)
+    getLibrary(LIBRARY_DELETED).push(removed)
+
+    getAllBooks(LIBRARY_MAIN)
 }
 
 function setRead(id) {
