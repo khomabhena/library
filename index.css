@@ -147,48 +147,6 @@ input:focus {
     box-shadow: 1px 2px 4px var(--light-grey)
 }
 
-table {
-    width: 100%;
-}
-
-
-td {
-    padding: .5rem .6rem;
-}
-
-tr > .left {
-    text-align: end;
-}
-
-td {
-    border: 1px solid var(--light-grey);
-    border-radius: 10px;
-}
-
-table {
-    border-spacing: .5rem;
-    color: var(--primary-dark);
-}
-
-tr:hover {
-    background-color: var(--light-grey);
-    /* color: var(--white); */
-}
-
-.delete {
-    cursor: pointer;
-}
-
-.delete:hover {
-    color: red;
-}
-
-/* tr:nth-child(even) {
-    background-color: var(--light-grey);
-} */
-
-
-
 
 
 
