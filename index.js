@@ -1,11 +1,26 @@
 let myLibrary = []
 let myLibraryDeleted = []
+const LIBRARY_MAIN = 'main'
+const LIBRARY_DELETED = 'deleted'
 
 function Book(author, title, pages, isRead) {
     this.author = author
     this.title = title
     this.pages = pages
     this.isRead = isRead
+}
+
+function getLibrary(type) {
+    const lib = JSON.parse(localStorage.getItem(type)) || []
+    // console.log(`Get: `)
+    // console.table(lib)    
+    return lib
+}
+
+function storeLibrary(type, library) {
+    // console.log(`Store:`)
+    // console.table(library)
+    localStorage.setItem(type, JSON.stringify(library))
 }
 
 function createCard(id, book) {
@@ -43,38 +58,43 @@ function createCard(id, book) {
     card.appendChild(p)
     card.appendChild(buttonContainer)
 
+    buttonDelete.addEventListener('click', e => {
+        removeBook(id)
+    })
+
     return card
 }
 
-function addBooksToPage(book) {
-    const index = myLibrary.length - 1
-    const content = document.querySelector('.content')
-    content.appendChild(createCard(index, book))
-}
-
 function addBookToLibrary(author, title, pages, isRead) {
-    const newBook = new Book(author, title, pages, isRead)
-    myLibrary.push(newBook)
+    const newBook = new Book(author, title, pages, false)
+    const lib = getLibrary(LIBRARY_MAIN)
 
-    addBooksToPage(newBook)
+    // lib.push(newBook)
+    lib.unshift(newBook)
+    storeLibrary(LIBRARY_MAIN, lib)
+    getAllBooks(LIBRARY_MAIN)
 }
 
-function getAllBooks() {
-    let tableRows = document.querySelector('.table-rows')
-    for (let x = 0; x < myLibrary.length; x++) {
+function getAllBooks(type) {
+    let content = document.querySelector('.content')
+    content.innerHTML = ''
+    const lib = getLibrary(type)
 
-        const book = myLibrary[x]
-        console.log(`Author: ${book.author} Book: ${book.title} Pages: ${book.pages}`)
-    }
+    lib.forEach((item, index) => {
+       const card = createCard(index, item)
+       content.appendChild(card)
+    });
 }
+
+getAllBooks(LIBRARY_MAIN)
 
 function removeBook(id) {
     const removed = myLibrary.splice(id, 1)[0]
     const newBook = new Book(removed.author, removed.title, removed.pages, removed.isRead)
-    myLibraryDeleted.push(newBook)
-
-    console.log(myLibrary)
-    console.log(myLibraryDeleted)
+    
+    const content = document.querySelector('.content')
+    content.innerHTML = ''
+    getLibrary(LIBRARY_DELETED).push(newBook)
 }
 
 function setRead(id) {
@@ -82,7 +102,8 @@ function setRead(id) {
     const newBook = new Book(book.author, book.title, book.pages, !book.isRead)
 
     // Update array
-    myLibrary.splice(id, 1, newBook)
+    const lib = getLibrary(LIBRARY_MAIN).splice(id, 1, newBook)
+    storeLibrary(lib)
 }
 
 document.querySelector('.submit').addEventListener('click', e => {
